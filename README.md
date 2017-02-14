@@ -8,16 +8,20 @@ mvn archetype:generate \
   -DarchetypeArtifactId=spring-boot-camel-archetype \
   -DarchetypeVersion=2.2.180.redhat-000004
 
-
 # How to deploy on Openshift
 
-wget raw.githubusercontent.com/jboss-fuse/application-templates/application-templates-2.0.redhat-000026/fis-image-streams.json
 
+```
 oc cluster up
-oc login -u system:admin
-oc project openshift
-oc create -f fis-image-streams.json
-oc login -u developer
+oc create -f openshift/fis-image-streams.json
+oc create -f openshift/solution.yml
+oc new-app springboot-rest
+```
+
+# How to delete from Openshift
+
+oc delete all -l component=springboot-rest
+
 
 # Spring-Boot Camel QuickStart
 
