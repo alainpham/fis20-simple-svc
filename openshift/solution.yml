@@ -104,9 +104,6 @@ objects:
     strategy:
       type: Source
       sourceStrategy:
-        env:
-        - name: MAVEN_OPTS
-          value: ${MAVEN_OPTS}
         from:
           kind: ImageStreamTag
           namespace: "${IMAGE_STREAM_NAMESPACE}"
@@ -122,6 +119,8 @@ objects:
           value: "${MAVEN_ARGS}"
         - name: MAVEN_ARGS_APPEND
           value: "${MAVEN_ARGS_APPEND}"
+        - name: MAVEN_OPTS
+          value: ${MAVEN_OPTS}
     output:
       to:
         kind: ImageStreamTag
@@ -188,10 +187,60 @@ objects:
           ports:
           - containerPort: 8778
             name: jolokia
+          - containerPort: 8666
+            name: rest-svc
           env:
           - name: KUBERNETES_NAMESPACE
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
           resources: {}
+  status: {}
+  
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: "${APP_NAME}"
+    creationTimestamp: 
+    labels:
+      component: "${APP_NAME}"
+      group: quickstarts
+      project: "${APP_NAME}"
+      provider: s2i
+      version: "${APP_VERSION}"
+  spec:
+    ports:
+    - name: rest-svc-tcp
+      port: 8666
+      protocol: TCP
+      targetPort: 8666
+    selector:
+      component: "${APP_NAME}"
+      deploymentconfig: "${APP_NAME}"
+      group: quickstarts
+      project: "${APP_NAME}"
+      provider: s2i
+      version: "${APP_VERSION}"
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+    
+- apiVersion: v1
+  kind: Route
+  metadata:
+    name: "${APP_NAME}"
+    creationTimestamp: 
+    labels:
+      component: "${APP_NAME}"
+      group: quickstarts
+      project: "${APP_NAME}"
+      provider: s2i
+      version: "${APP_VERSION}"
+  spec:
+    to:
+      kind: Service
+      name: "${APP_NAME}"
+    port:
+      targetPort: rest-svc-tcp
   status: {}
