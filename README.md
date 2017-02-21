@@ -1,10 +1,10 @@
 # Create project
 ```
-mvn archetype:generate \
-  -DarchetypeCatalog=https://maven.repository.redhat.com/earlyaccess/all/io/fabric8/archetypes/archetypes-catalog/2.2.180.redhat-000004/archetypes-catalog-2.2.180.redhat-000004-archetype-catalog.xml \
-  -DarchetypeGroupId=org.jboss.fuse.fis.archetypes \
-  -DarchetypeArtifactId=spring-boot-camel-archetype \
-  -DarchetypeVersion=2.2.180.redhat-000004
+mvn archetype:generate -DarchetypeCatalog=https://maven.repository.redhat.com/ga/io/fabric8/archetypes/archetypes-catalog/2.2.195.redhat-000004/archetypes-catalog-2.2.195.redhat-000004-archetype-catalog.xml  \
+ -DarchetypeGroupId=org.jboss.fuse.fis.archetypes  \
+ -DarchetypeArtifactId=spring-boot-camel-xml-archetype  \
+ -DarchetypeVersion=2.2.195.redhat-000004
+
 ```
 # How to deploy on Openshift
 Tweak the file openshift/solution.yml to enter your paramaters about the nexus mirror and git repository
