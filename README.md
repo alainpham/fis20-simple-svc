@@ -10,7 +10,11 @@ mvn archetype:generate -DarchetypeCatalog=https://maven.repository.redhat.com/ga
 Tweak the file openshift/solution.yml to enter your paramaters about the nexus mirror and git repository
 ```
 oc cluster up
-oc create -f openshift/fis-image-streams.json
+oc login -u system:admin
+BASEURL=https://raw.githubusercontent.com/jboss-fuse/application-templates/GA
+oc replace --force -n openshift -f ${BASEURL}/fis-image-streams.json
+oc login -u developer
+oc create -f ${BASEURL}/fis-image-streams.json
 oc create -f openshift/solution.yml
 oc new-app springboot-rest
 ```
