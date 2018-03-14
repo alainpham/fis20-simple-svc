@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>samples</groupId>
   <artifactId>fis20-simple-svc</artifactId>
@@ -9,9 +7,9 @@
   <description>Spring Boot example running a Camel route</description>
   <properties>
     <spring-boot.version>1.4.1.RELEASE</spring-boot.version>
-    <fabric8.version>2.2.170.redhat-000010</fabric8.version>
+    <fabric8.version>3.0.8</fabric8.version>
     <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
-    <fabric8.maven.plugin.version>3.1.80.redhat-000010</fabric8.maven.plugin.version>
+    <fabric8.maven.plugin.version>3.5.38</fabric8.maven.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
   </properties>
